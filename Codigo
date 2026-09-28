@@ -1,0 +1,56 @@
+# Pesquisa de satisfação no atendimento - TudoWeb
+# Coleta nome, idade e opinião de cada entrevistado e mostra o resultado final.
+#
+# Uso:
+#   python pesquisa.py        -> pesquisa completa com 50 entrevistados
+#   python pesquisa.py 10     -> teste rápido com 10 entrevistados
+
+import sys
+
+total_entrevistados = 50  # quantidade oficial da pesquisa
+if len(sys.argv) > 1 and sys.argv[1].isdigit():
+    total_entrevistados = int(sys.argv[1])  # permite testar com menos pessoas
+
+# Contadores das respostas
+excelente = 0
+bom = 0
+ruim = 0
+
+print("=" * 50)
+print("   PESQUISA DE SATISFAÇÃO - TUDOWEB")
+print("=" * 50)
+
+# Estrutura de repetição: uma volta para cada entrevistado
+for i in range(1, total_entrevistados + 1):
+    print(f"\nEntrevistado {i} de {total_entrevistados}")
+
+    nome = input("Nome: ")
+
+    idade = input("Idade: ")
+    while not idade.isdigit():  # repete até digitar um número
+        print("Idade inválida! Digite apenas números.")
+        idade = input("Idade: ")
+
+    print("Como você avalia o atendimento?")
+    print("  1 - EXCELENTE | 2 - BOM | 3 - RUIM")
+    opiniao = input("Opinião (1, 2 ou 3): ")
+    while opiniao not in ("1", "2", "3"):  # repete até digitar 1, 2 ou 3
+        print("Opção inválida! Digite 1, 2 ou 3.")
+        opiniao = input("Opinião (1, 2 ou 3): ")
+
+    # Estrutura de decisão: verifica a opinião do entrevistado
+    if opiniao == "1":
+        excelente = excelente + 1
+    elif opiniao == "2":
+        bom = bom + 1
+    else:
+        ruim = ruim + 1
+
+# Resultado final
+print("\n" + "=" * 50)
+print("   RESULTADO DA PESQUISA")
+print("=" * 50)
+print(f"Total de entrevistados: {total_entrevistados}")
+print(f"a) Respostas EXCELENTE: {excelente}")
+print(f"b) Respostas RUIM: {ruim}")
+print(f"(extra) Respostas BOM: {bom}")
